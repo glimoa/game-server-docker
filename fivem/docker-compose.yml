@@ -8,16 +8,15 @@ services:
         - "3306:3306"
     restart: always
     environment:
-      MYSQL_DATABASE: database_name
-      MYSQL_USER: fivem
-      MYSQL_PASSWORD: fivem
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
   fivem:
+    image: lapin/fivem
+    container_name: lapin-fivem
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./data:/data
+      - ./data:/fivem/data
     ports:
         - "30110:30110/tcp"
         - "30110:30110/udp"
@@ -25,4 +24,3 @@ services:
         - "30120:30120/udp"
         - "40125:40125"
     restart: always
-volumes:
